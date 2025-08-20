@@ -16,7 +16,7 @@ class RootIO:
             input_path = input_path.strip()
 
         if input_path is None or input_path == "":
-            temp_path = self.config.File_Path
+            temp_path = self.config.file_path
         else:
             temp_path = Path(input_path)
 

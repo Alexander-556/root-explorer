@@ -8,8 +8,8 @@ from dataclasses import dataclass
 class FileConfig:
     # Config Keys
     # not shared across instances
-    File_Path: Path
-    Config_Path: Path
+    file_path: Path
+    config_path: Path
 
     # Class Defaults
     # shared across instances
@@ -28,6 +28,6 @@ class FileConfig:
 
         # Map dict to config obj
         return cls(
-            File_Path=Path(raw_config["File_Path"]),
-            Config_Path=path,
+            file_path=Path(raw_config["file_path"]),
+            config_path=path,
         )

@@ -8,8 +8,8 @@ from dataclasses import dataclass
 class TreeConfig:
     # Config Keys
     # not shared across instances
-    Tree_Name: str
-    Config_Path: Path
+    tree_name: str
+    config_path: Path
 
     # Class Defaults
     # shared across instances
@@ -28,6 +28,6 @@ class TreeConfig:
 
         # Map dict to config obj
         return cls(
-            Tree_Name=raw_config["Tree_Name"],
-            Config_Path=path,
+            tree_name=raw_config["tree_name"],
+            config_path=path,
         )
