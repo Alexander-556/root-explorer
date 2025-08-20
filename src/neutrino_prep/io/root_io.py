@@ -22,8 +22,6 @@ class RootIO:
 
         self.root_path: Path = temp_path
 
-        self.tree_name: str = self.config.Tree_Name
-
         self._handle: Any = None
 
     def open_root(self):
