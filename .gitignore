@@ -202,8 +202,8 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
-Data/
-Output/
+data/
+output/
 
 *.root
 *.npy
