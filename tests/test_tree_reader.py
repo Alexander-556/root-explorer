@@ -20,6 +20,7 @@ print(tt1.has_branch("random"))
 tr1 = TreeReader(ref1)
 
 print(tr1.read_one("Init_Nu_Energy"))
+print(tr1.read_multiple(["Init_Nu_Energy","Transfer_qSq"]))
 
 rt1.close_root()
 print(rt1.is_open)
