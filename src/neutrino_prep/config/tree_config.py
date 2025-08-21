@@ -24,10 +24,10 @@ class TreeConfig:
         # load config from json
         # ? Optional: add try and catch
         with open(path, "r", encoding="utf-8") as f:
-            raw_config: dict[str, Any] = json.load(f)
+            raw: dict[str, Any] = json.load(f)
 
         # Map dict to config obj
         return cls(
-            tree_name=raw_config["tree_name"],
+            tree_name=raw["tree_name"],
             config_path=path,
         )

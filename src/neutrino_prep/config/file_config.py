@@ -24,10 +24,10 @@ class FileConfig:
         # load config from json
         # ? Optional: add try and catch
         with open(path, "r", encoding="utf-8") as f:
-            raw_config: dict[str, Any] = json.load(f)
+            raw: dict[str, Any] = json.load(f)
 
         # Map dict to config obj
         return cls(
-            file_path=Path(raw_config["file_path"]),
+            file_path=Path(raw["file_path"]),
             config_path=path,
         )

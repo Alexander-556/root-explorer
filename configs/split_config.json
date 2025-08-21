@@ -1,0 +1,39 @@
+{
+    "flag_branch": "Sample_Flag",
+    "flag_values": {
+        "A": 0,
+        "B": 1
+    },
+    "cat_branch": "Interaction_Type",
+    "target_branches": [
+        "Init_Nu_Energy",
+        "Interaction_Part_Num",
+        "Interaction_Type",
+        "Scatter_Mu_Energy",
+        "Scatter_Mu_Momentum_Px",
+        "Scatter_Mu_Momentum_Py",
+        "Scatter_Mu_Momentum_Pz",
+        "Scatter_Mu_Momentum_PP",
+        "Scatter_Mu_Momentum_Pt",
+        "Scatter_Mu_Momentum_Pl",
+        "Scatter_Mu_Momentum_PtPlRatio",
+        "Energy_Transfer",
+        "Scatter_Mu_Angle",
+        "Transfer_qSq",
+        "Transfer_QsQ",
+        "Inelasticity_y",
+        "Bjorken_x",
+        "Hardonic_Mass_W"
+    ],
+    "type_group": {
+        "A": ["QE", "RES", "DIS"],
+        "B": ["COH", "MEC"]
+    },
+    "type_map": {
+        "QE": 0,
+        "RES": 1,
+        "DIS": 2,
+        "COH": 3,
+        "MEC": 10
+    }
+}
