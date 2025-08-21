@@ -6,6 +6,8 @@ from dataclasses import dataclass
 
 @dataclass
 class SplitConfig:
+    # Config Keys
+    # not shared across instances
     flag_branch: str
     flag_values: dict[str, int]
     cat_branch: str
@@ -14,10 +16,16 @@ class SplitConfig:
     type_map: dict[str, int]
     config_path: Path
 
+    # Class Defaults
+    # shared across instances
     DEFAULT_CONFIG_PATH: ClassVar[Path] = Path("configs") / "split_config.json"
 
     @classmethod
-    def load_config(cls, path: Path | str | None = None) -> "SplitConfig":
+    def load_config(
+        cls,
+        path: Path | str | None = None,
+    ) -> "SplitConfig":
+        
         # Resolve path (allow override)
         path = Path(path) if path else cls.DEFAULT_CONFIG_PATH
 

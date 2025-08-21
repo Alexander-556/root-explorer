@@ -7,7 +7,10 @@ import uproot
 
 class RootIO:
 
-    def __init__(self, input_path: Path | str | None = None) -> None:
+    def __init__(
+        self,
+        input_path: Path | str | None = None,
+    ) -> None:
 
         self.config: FileConfig = FileConfig.load_config()
 

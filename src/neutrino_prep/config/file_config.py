@@ -16,7 +16,10 @@ class FileConfig:
     DEFAULT_CONFIG_PATH: ClassVar[Path] = Path("configs") / "file_config.json"
 
     @classmethod
-    def load_config(cls, path: Path | str | None = None) -> "FileConfig":
+    def load_config(
+        cls,
+        path: Path | str | None = None,
+    ) -> "FileConfig":
 
         # conditional that handles optional input override
         path = Path(path) if path else cls.DEFAULT_CONFIG_PATH

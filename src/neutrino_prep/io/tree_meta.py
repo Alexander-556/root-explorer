@@ -6,7 +6,7 @@ class TreeMeta:
         self,
         ref: TreeRef,
     ) -> None:
-        
+
         self.ref = ref
         self.io = ref.io
         self.tree_name = ref.tree_name
@@ -24,5 +24,9 @@ class TreeMeta:
     def get_branch_names(self) -> list[str]:
         return list(self._get_tree().keys())
 
-    def has_branch(self, name: str) -> bool:
+    def has_branch(
+        self,
+        name: str,
+    ) -> bool:
+
         return name in self._get_tree().keys()

@@ -16,7 +16,10 @@ class TreeConfig:
     DEFAULT_CONFIG_PATH: ClassVar[Path] = Path("configs") / "tree_config.json"
 
     @classmethod
-    def load_config(cls, path: Path | str | None = None) -> "TreeConfig":
+    def load_config(
+        cls,
+        path: Path | str | None = None,
+    ) -> "TreeConfig":
 
         # conditional that handles optional input override
         path = Path(path) if path else cls.DEFAULT_CONFIG_PATH
