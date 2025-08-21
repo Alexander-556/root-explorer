@@ -76,8 +76,13 @@ class DataSep:
         # Now `a` and `b` are dicts with the same keys as `data`,
         # but each array contains only the selected rows.
 
-        print({k: v.shape for k, v in a.items()})
-        print({k: v.shape for k, v in b.items()})
+        print("---------- Dataset A ----------")
+        for k, v in a.items():
+            print(f"{k}: {v.shape}")
+
+        print("---------- Dataset B ----------")
+        for k, v in b.items():
+            print(f"{k}: {v.shape}")
 
         return SplitPair(a=a, b=b)
 
@@ -133,7 +138,12 @@ class DataSep:
         # Todo: Make this more elegant
         result: SplitPair = SplitPair(a=out["A"], b=out["B"])
 
-        print({k: v.shape for k, v in out["A"].items()})
-        print({k: v.shape for k, v in out["B"].items()})
+        print("---------- Dataset A ----------")
+        for k, v in out["A"].items():
+            print(f"{k}: {v.shape}")
+
+        print("---------- Dataset B ----------")
+        for k, v in out["B"].items():
+            print(f"{k}: {v.shape}")
 
         return result

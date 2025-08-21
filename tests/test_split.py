@@ -1,10 +1,13 @@
 from neutrino_prep.io.root_io import RootIO
 from neutrino_prep.io.tree_ref import TreeRef
 from neutrino_prep.pipeline.data_sep import DataSep
+from neutrino_prep.pipeline.data_pair import SplitPair
 
 
 with RootIO() as rio:
-    ref = TreeRef.load_ref(rio)
-    sep = DataSep(ref)
-    pair = sep.split_by_flag()
-    pair.save_npy("split1/data")
+    ref: TreeRef = TreeRef.load_ref(rio)
+    sep: DataSep = DataSep(ref)
+
+    pair: SplitPair = sep.split_by_categories()
+    pair.save_npy("split2/data")
+
