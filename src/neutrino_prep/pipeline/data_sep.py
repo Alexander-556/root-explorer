@@ -130,7 +130,7 @@ class DataSep:
 
             out[group_name] = group_data
 
-        # Todo: Make this more elgaent
+        # Todo: Make this more elegant
         result: SplitPair = SplitPair(a=out["A"], b=out["B"])
 
         print({k: v.shape for k, v in out["A"].items()})
