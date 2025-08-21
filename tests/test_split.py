@@ -9,5 +9,5 @@ with RootIO() as rio:
     sep: DataSep = DataSep(ref)
 
     pair: SplitPair = sep.split_by_categories()
-    pair.save_npy("split2/data")
+    pair.save_npy("split3/data")
 

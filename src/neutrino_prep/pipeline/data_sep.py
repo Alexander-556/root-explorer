@@ -91,14 +91,14 @@ class DataSep:
         branches: Iterable[str] | None = None,
         cat_branch: str | None = None,
         groups: dict[str, list[str]] | None = None,
+        include_cat: bool | None = None,  # NEW: control whether cat column is returned
     ) -> SplitPair:
-
-        # Load configs and prepare for override
-
+        
+        # ------ resolve inputs ------
         if branches is None:
-            branches = self.config.target_branches
+            requested = list(self.config.target_branches)
         else:
-            branches = list(branches)
+            requested = list(branches)  # materialize once; preserves user order
 
         if cat_branch is None or cat_branch == "":
             cat_branch = self.config.cat_branch
@@ -108,35 +108,38 @@ class DataSep:
 
         type_map = self.config.type_map  # {"QE":0, "RES":1, ...}
 
-        # Read requested branches + the categorical branch
-        cols: list[str] = list(dict.fromkeys([*branches, cat_branch]))
+        # Decide whether to include the category column in outputs:
+        # - If caller passed include_cat explicitly, respect it.
+        # - Otherwise, include it iff the caller explicitly requested it in `branches`.
+        if include_cat is None:
+            include_cat = cat_branch in requested
+
+        # Read requested branches + the categorical branch (ensure cat is available for masking)
+        cols: list[str] = list(dict.fromkeys([*requested, cat_branch]))
         data = self.reader.read_multiple(cols)
 
-        # Remove from payload; keep only user branches
-        cats = data.pop(cat_branch)
+        # Don't pop yet — we might want to keep it in the outputs
+        cats = data[cat_branch]
 
-        # Define output dict
+        # Build masks per group
         out: dict[str, dict[str, np.ndarray]] = {}
 
         for group_name, labels in groups.items():
-            # Map each string label (e.g. "QE") to its integer code via type_map
-            codes: list[int] = []
-            for label in labels:
-                code = type_map[label]  # KeyError if label not in the map
-                codes.append(code)
-
-            # Build a single mask for this group: cats ∈ codes
+            # Map labels -> integer codes (if your file stores ints)
+            codes: list[int] = [type_map[label] for label in labels]
             mask = np.isin(cats, codes)
 
-            # Slice every requested branch with this mask
+            # Choose which columns to output, preserving the user's requested order
+            if include_cat:
+                feature_order = requested  # may include cat_branch if user asked for it
+            else:
+                feature_order = [n for n in requested if n != cat_branch]
+
             group_data: dict[str, np.ndarray] = {}
-            for name, arr in data.items():
-                group_data[name] = arr[mask]
+            for name in feature_order:
+                group_data[name] = data[name][mask]
 
             out[group_name] = group_data
-
-        # Todo: Make this more elegant
-        result: SplitPair = SplitPair(a=out["A"], b=out["B"])
 
         print("---------- Dataset A ----------")
         for k, v in out["A"].items():
@@ -146,4 +149,7 @@ class DataSep:
         for k, v in out["B"].items():
             print(f"{k}: {v.shape}")
 
-        return result
+        # Return as SplitPair (assumes 'A' and 'B' keys exist in config)
+        # Todo: Make this more elegant
+        # ? Should we
+        return SplitPair(a=out["A"], b=out["B"])
