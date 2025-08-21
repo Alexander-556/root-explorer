@@ -14,7 +14,7 @@ ref1: TreeRef = TreeRef.load_ref(rt1)
 sp1 = DataSep(ref1)
 
 # sp1.split_by_flag()
-catsp = sp1.split_by_flag()
+catsp = sp1.split_by_categories()
 
 catsp.save_npy("output/split2/data")
 
