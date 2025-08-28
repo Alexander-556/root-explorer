@@ -1,4 +1,4 @@
-from neutrino_prep.io.tree_ref import TreeRef
+from neutrino.prep.io.tree_ref import TreeRef
 
 
 class TreeMeta:

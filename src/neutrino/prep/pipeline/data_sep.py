@@ -1,10 +1,10 @@
 from typing import Iterable
 import numpy as np
 
-from neutrino_prep.io.tree_ref import TreeRef
-from neutrino_prep.io.tree_reader import TreeReader
-from neutrino_prep.config.split_config import SplitConfig
-from neutrino_prep.pipeline.data_pair import SplitPair
+from neutrino.prep.io.tree_ref import TreeRef
+from neutrino.prep.io.tree_reader import TreeReader
+from neutrino.prep.config.split_config import SplitConfig
+from neutrino.prep.pipeline.data_pair import SplitPair
 
 
 class DataSep:

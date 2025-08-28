@@ -5,21 +5,21 @@ from dataclasses import dataclass
 
 
 @dataclass
-class FileConfig:
+class TreeConfig:
     # Config Keys
     # not shared across instances
-    file_path: Path
+    tree_name: str
     config_path: Path
 
     # Class Defaults
     # shared across instances
-    DEFAULT_CONFIG_PATH: ClassVar[Path] = Path("configs") / "file_config.json"
+    DEFAULT_CONFIG_PATH: ClassVar[Path] = Path("configs") / "data" / "tree_config.json"
 
     @classmethod
     def load_config(
         cls,
         path: Path | str | None = None,
-    ) -> "FileConfig":
+    ) -> "TreeConfig":
 
         # conditional that handles optional input override
         path = Path(path) if path else cls.DEFAULT_CONFIG_PATH
@@ -31,6 +31,6 @@ class FileConfig:
 
         # Map dict to config obj
         return cls(
-            file_path=Path(raw["file_path"]),
+            tree_name=raw["tree_name"],
             config_path=path,
         )

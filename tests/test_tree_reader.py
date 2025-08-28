@@ -1,7 +1,7 @@
-from neutrino_prep.io.tree_meta import TreeMeta
-from neutrino_prep.io.tree_reader import TreeReader
-from neutrino_prep.io.root_io import RootIO
-from neutrino_prep.io.tree_ref import TreeRef
+from neutrino.prep.io.tree_meta import TreeMeta
+from neutrino.prep.io.tree_reader import TreeReader
+from neutrino.prep.io.root_io import RootIO
+from neutrino.prep.io.tree_ref import TreeRef
 
 
 rt1: RootIO = RootIO()

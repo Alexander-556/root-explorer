@@ -1,6 +1,6 @@
 from dataclasses import dataclass
-from neutrino_prep.io.root_io import RootIO
-from neutrino_prep.config.tree_config import TreeConfig
+from neutrino.prep.io.root_io import RootIO
+from neutrino.prep.config.tree_config import TreeConfig
 
 
 @dataclass(frozen=True)

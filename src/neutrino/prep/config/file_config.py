@@ -1,3 +1,9 @@
+"""
+config/file_config.py
+
+This file reads the config `file_config.json` and collects information about
+the location of the root file. 
+"""
 import json
 from pathlib import Path
 from typing import Any, ClassVar
@@ -5,21 +11,21 @@ from dataclasses import dataclass
 
 
 @dataclass
-class TreeConfig:
+class FileConfig:
     # Config Keys
     # not shared across instances
-    tree_name: str
+    file_path: Path
     config_path: Path
 
     # Class Defaults
     # shared across instances
-    DEFAULT_CONFIG_PATH: ClassVar[Path] = Path("configs") / "tree_config.json"
+    DEFAULT_CONFIG_PATH: ClassVar[Path] = Path("configs") / "data" / "file_config.json"
 
     @classmethod
     def load_config(
         cls,
         path: Path | str | None = None,
-    ) -> "TreeConfig":
+    ) -> "FileConfig":
 
         # conditional that handles optional input override
         path = Path(path) if path else cls.DEFAULT_CONFIG_PATH
@@ -31,6 +37,6 @@ class TreeConfig:
 
         # Map dict to config obj
         return cls(
-            tree_name=raw["tree_name"],
+            file_path=Path(raw["file_path"]),
             config_path=path,
         )

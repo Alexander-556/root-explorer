@@ -2,7 +2,7 @@ from pathlib import Path
 from typing import Any, Optional
 
 import uproot
-from neutrino_prep.config.file_config import FileConfig
+from neutrino.prep.config.file_config import FileConfig
 
 
 class RootIO:

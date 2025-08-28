@@ -1,5 +1,5 @@
-from neutrino_prep.io.tree_meta import TreeMeta
-from neutrino_prep.io.root_io import RootIO
+from neutrino.prep.io.tree_meta import TreeMeta
+from neutrino.prep.io.root_io import RootIO
 
 rt1: RootIO = RootIO()
 

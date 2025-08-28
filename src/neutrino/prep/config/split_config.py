@@ -18,7 +18,7 @@ class SplitConfig:
 
     # Class Defaults
     # shared across instances
-    DEFAULT_CONFIG_PATH: ClassVar[Path] = Path("configs") / "split_config.json"
+    DEFAULT_CONFIG_PATH: ClassVar[Path] = Path("configs") / "data" / "split_config.json"
 
     @classmethod
     def load_config(
