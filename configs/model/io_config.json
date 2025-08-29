@@ -1,7 +1,7 @@
 {
     "output_dir": "runs",
     "split_prefix": "data",
-    "split_dir": "output\\split1",
+    "split_dir": "output\\split2",
     "a_suffix": "_A.npy",
     "b_suffix": "_B.npy",
     "columns_filename": "data_columns.txt"

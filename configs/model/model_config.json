@@ -1,0 +1,10 @@
+{
+    "type": "torch_mlp_bce",
+    "params": {
+        "hidden_sizes": [
+            64,
+            32
+        ],
+        "dropout": 0.2
+    }
+}
