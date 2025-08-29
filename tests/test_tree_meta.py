@@ -1,16 +1,9 @@
-from neutrino.prep.io.tree_meta import TreeMeta
 from neutrino.prep.io.root_io import RootIO
+from neutrino.prep.io.tree_ref import TreeRef
+from neutrino.prep.io.tree_meta import TreeMeta
 
-rt1: RootIO = RootIO()
-
-rt1.open_root()
-print(rt1.is_open)
-
-tt1:TreeMeta = TreeMeta(rt1)
-
-print(tt1.get_num_entries())
-print(tt1.get_branch_names())
-print(tt1.has_branch("random"))
-
-rt1.close_root()
-print(rt1.is_open)
+with RootIO() as rio:
+    ref: TreeRef = TreeRef.load_ref(rio)
+    meta: TreeMeta = TreeMeta(ref)
+    print(meta.get_branch_names())
+    print(meta.get_num_entries())

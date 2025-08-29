@@ -9,6 +9,7 @@ from typing import Any, ClassVar, Literal, Optional
 
 # ---------------- Nested config sections ---------------- #
 
+
 @dataclass
 class ModelConfig:
     type: Literal["sk_random_forest", "sk_logreg", "torch_mlp"]
@@ -40,6 +41,7 @@ class IOConfig:
 
 # ---------------- Top-level config ---------------- #
 
+
 @dataclass
 class ClassifyConfig:
     # User-configurable keys
@@ -54,7 +56,9 @@ class ClassifyConfig:
     config_path: Path
 
     # Default location (adjust if you store it elsewhere)
-    DEFAULT_CONFIG_PATH: ClassVar[Path] = Path("configs") / "model" / "classify_config.json"
+    DEFAULT_CONFIG_PATH: ClassVar[Path] = (
+        Path("configs") / "model" / "classify_config.json"
+    )
 
     @classmethod
     def load_config(
@@ -98,7 +102,11 @@ class ClassifyConfig:
         # Example normalizations (safe if keys missing)
         if "max_depth" in raw_params:
             raw_params["max_depth"] = _maybe_none(raw_params["max_depth"])
-        if "n_jobs" in raw_params and isinstance(raw_params["n_jobs"], int) or raw_params.get("n_jobs") == -1:
+        if (
+            "n_jobs" in raw_params
+            and isinstance(raw_params["n_jobs"], int)
+            or raw_params.get("n_jobs") == -1
+        ):
             # keep as-is; sklearn accepts -1
             pass
         if "random_state" in raw_params:
@@ -135,7 +143,9 @@ class ClassifyConfig:
         raw_io: dict[str, Any] = raw["io"]
         output_dir = Path(str(raw_io["output_dir"]))
         split_prefix = str(raw_io["split_prefix"])
-        split_dir = Path(str(raw_io["split_dir"]))  # handles backslashes from JSON on Windows
+        split_dir = Path(
+            str(raw_io["split_dir"])
+        )  # handles backslashes from JSON on Windows
         a_suffix = str(raw_io["a_suffix"])
         b_suffix = str(raw_io["b_suffix"])
         columns_filename = str(raw_io["columns_filename"])
@@ -162,11 +172,13 @@ class ClassifyConfig:
 
 # ---------------- Convenience: resolved file paths ---------------- #
 
+
 @dataclass
 class SplitFiles:
     """
     Helper to resolve concrete file paths based on IOConfig and split_prefix.
     """
+
     a_path: Path
     b_path: Path
     columns_path: Path

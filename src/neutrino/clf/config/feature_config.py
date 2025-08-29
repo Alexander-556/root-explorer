@@ -14,7 +14,9 @@ class ClfFeatureConfig:
 
     # Class Defaults
     # shared across instances
-    DEFAULT_CONFIG_PATH: ClassVar[Path] = Path("configs") / "model" / "feature_config.json"
+    DEFAULT_CONFIG_PATH: ClassVar[Path] = (
+        Path("configs") / "model" / "feature_config.json"
+    )
 
     @classmethod
     def load_config(
