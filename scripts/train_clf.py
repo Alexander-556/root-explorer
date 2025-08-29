@@ -4,7 +4,7 @@ import torch
 from neutrino.clf.config.io_config import ClfIoConfig
 from neutrino.clf.config.feature_config import ClfFeatureConfig
 
-from neutrino.clf.dataset import load_np_split, make_torch_loaders
+from neutrino.clf.prepare import load_np_split, make_torch_loaders
 from neutrino.clf.model import MLP
 from neutrino.clf.train import TrainParams, train_simple
 
