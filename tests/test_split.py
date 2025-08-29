@@ -10,4 +10,3 @@ with RootIO() as rio:
 
     pair: SplitPair = sep.split_by_categories()
     pair.save_npy("split3/data")
-
